@@ -858,6 +858,7 @@ html, body {
         background-color: #c80b11;
         border: none;
         outline: none;
+        transition: .3s;
         cursor: pointer; }
         .footer-info-wrapper .subscribe-form button:hover {
           background-color: #b70000; }
@@ -871,10 +872,11 @@ html, body {
       .footer-info-wrapper .social .social-icons a {
         width: 35px;
         height: 35px;
-        margin-right: 10px; }
+        border-radius: 50%;
+        margin-right: 10px;
+        transition: .2s; }
         .footer-info-wrapper .social .social-icons a:hover {
-          border-radius: 50%;
-          box-shadow: inset 0 0 35px 3px #fff, 0 0 10px #000; }
+          box-shadow: inset 0 0 35px 3px #fff, 0 0 2px #000; }
         .footer-info-wrapper .social .social-icons a.tw {
           background: url(../img/social-icons.png) no-repeat; }
         .footer-info-wrapper .social .social-icons a.inst {
