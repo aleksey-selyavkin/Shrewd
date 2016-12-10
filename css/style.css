@@ -554,75 +554,136 @@ html, body {
         background: url(../img/icons.png) no-repeat 100%; }
 
 /* slider */
-.slider-main {
+@keyframes slider-autoplay {
+  0% {
+    opacity: 0;
+    transform: scale(1.03); }
+  10% {
+    opacity: 1; }
+  25% {
+    opacity: 1; }
+  35% {
+    opacity: 0;
+    transform: scale(1); }
+  100% {
+    opacity: 0; } }
+.slider {
   position: relative;
-  border-bottom: 2px solid #fff; }
-  .slider-main img {
-    display: block;
-    width: 100%;
-    height: auto; }
-  .slider-main .desc {
-    position: absolute;
-    bottom: 26%;
-    right: 135px;
-    color: #fff; }
-    .slider-main .desc .text-small {
-      margin: 0;
-      font-size: 64px;
-      letter-spacing: 0.03em; }
-    .slider-main .desc .text-big {
-      margin: -25px 0 0 0;
-      font-size: 120px;
-      letter-spacing: 0.03em; }
-    .slider-main .desc .btn {
-      margin-top: 19px;
-      text-align: center; }
-      .slider-main .desc .btn a {
-        font-size: 28px;
-        color: #c80b11;
-        background-color: #fff;
-        text-decoration: none;
-        letter-spacing: 0.03em;
-        padding: 14px 46px;
-        transition: all .3s; }
-        .slider-main .desc .btn a:hover {
-          color: #fff;
-          background-color: #c80b11; }
-  .slider-main .slider-nav {
+  border-bottom: 2px solid #fff;
+  overflow: hidden; }
+  .slider .slider-radio {
+    display: none; }
+    .slider .slider-radio:nth-of-type(1):checked ~ .slider-item:nth-of-type(1), .slider .slider-radio:nth-of-type(2):checked ~ .slider-item:nth-of-type(2), .slider .slider-radio:nth-of-type(3):checked ~ .slider-item:nth-of-type(3), .slider .slider-radio:nth-of-type(4):checked ~ .slider-item:nth-of-type(4) {
+      opacity: 1;
+      transition: opacity .2s linear; }
+    .slider .slider-radio:nth-of-type(1):checked ~ .slider-controls .slider-number:nth-child(1) {
+      background: #c80b11; }
+    .slider .slider-radio:nth-of-type(2):checked ~ .slider-controls .slider-number:nth-child(2) {
+      background: #c80b11; }
+    .slider .slider-radio:nth-of-type(3):checked ~ .slider-controls .slider-number:nth-child(3) {
+      background: #c80b11; }
+    .slider .slider-radio:nth-of-type(4):checked ~ .slider-controls .slider-number:nth-child(4) {
+      background: #c80b11; }
+    .slider .slider-radio:checked ~ .slider-item, .slider .slider-radio:checked ~ .slider-controls .slider-number:after {
+      opacity: 0;
+      animation: none; }
+  .slider .slider-item {
+    animation: slider-autoplay 24s infinite; }
+    .slider .slider-item:nth-of-type(2) {
+      animation-delay: 6s; }
+    .slider .slider-item:nth-of-type(3) {
+      animation-delay: 12s; }
+    .slider .slider-item:nth-of-type(4) {
+      animation-delay: 18s; }
+    .slider .slider-item ~ .slider-item {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0; }
+    .slider .slider-item-bg {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .slider .slider-item .desc {
+      position: absolute;
+      bottom: 26%;
+      right: 135px;
+      color: #fff;
+      z-index: 1; }
+      .slider .slider-item .desc .text-small {
+        margin: 0;
+        font-size: 64px;
+        letter-spacing: 0.03em; }
+      .slider .slider-item .desc .text-big {
+        margin: -25px 0 0 0;
+        font-size: 120px;
+        letter-spacing: 0.03em; }
+      .slider .slider-item .desc .btn {
+        margin-top: 19px;
+        text-align: center; }
+        .slider .slider-item .desc .btn a {
+          font-size: 28px;
+          color: #c80b11;
+          background-color: #fff;
+          text-decoration: none;
+          letter-spacing: 0.03em;
+          padding: 14px 46px;
+          transition: all .3s; }
+          .slider .slider-item .desc .btn a:hover {
+            color: #fff;
+            background-color: #c80b11; }
+  .slider .slider-controls {
     position: absolute;
     left: 50%;
     bottom: 36px;
     transform: translateX(-50%);
     display: flex;
     justify-content: space-between;
-    width: 73px; }
-    .slider-main .slider-nav-btn {
+    width: 73px;
+    z-index: 10; }
+    .slider .slider-controls .slider-number {
       box-sizing: border-box;
       background: linear-gradient(#fff, #d6d6d6);
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      cursor: pointer; }
-      .slider-main .slider-nav-btn.active {
-        background: #c80b11; }
-.slider .slider-small {
+      cursor: pointer;
+      transition: background .2s linear; }
+      .slider .slider-controls .slider-number:after {
+        content: "";
+        display: block;
+        width: inherit;
+        height: inherit;
+        border-radius: 50%;
+        background: #c80b11;
+        opacity: 0;
+        animation: slider-autoplay 24s infinite; }
+      .slider .slider-controls .slider-number:nth-of-type(2):after {
+        animation-delay: 6s; }
+      .slider .slider-controls .slider-number:nth-of-type(3):after {
+        animation-delay: 12s; }
+      .slider .slider-controls .slider-number:nth-of-type(4):after {
+        animation-delay: 18s; }
+
+/* shops */
+.shops {
   display: flex;
   cursor: pointer; }
-  .slider .slider-small-slide {
+  .shops .shop {
     position: relative;
     width: 33.33%;
     height: auto;
     background-size: contain; }
-    .slider .slider-small-slide:hover {
-      filter: grayscale(50%); }
-    .slider .slider-small-slide:nth-child(2) {
+    .shops .shop:hover {
+      filter: grayscale(70%); }
+    .shops .shop:nth-child(2) {
       border-right: 2px solid #fff;
       border-left: 2px solid #fff; }
-    .slider .slider-small-slide img {
+    .shops .shop img {
       display: block;
       width: 100%;
       height: auto; }
-    .slider .slider-small-slide span {
+    .shops .shop span {
       position: absolute;
       display: block;
       top: 50%;
@@ -910,15 +971,15 @@ html, body {
   margin: 0; }
 
 @media screen and (max-width: 1600px) {
-  .slider-main .desc {
+  .slider .slider-item .desc {
     bottom: 20%;
     right: 70px; }
-    .slider-main .desc .text-small {
+    .slider .slider-item .desc .text-small {
       font-size: 54px; }
-    .slider-main .desc .text-big {
+    .slider .slider-item .desc .text-big {
       font-size: 100px;
       letter-spacing: 0.035em; }
-  .slider-main .slider-nav {
+  .slider .slider-controls {
     bottom: 28px; }
 
   .products .recent .trigger, .products .featured .trigger {
@@ -948,19 +1009,20 @@ html, body {
       margin-left: 10px;
       margin-right: -7px; }
 
-  .slider-main .desc {
+  .slider .slider-item .desc {
     right: 40px; }
-    .slider-main .desc .text-small {
+    .slider .slider-item .desc .text-small {
       font-size: 40px; }
-    .slider-main .desc .text-big {
+    .slider .slider-item .desc .text-big {
       font-size: 74px;
       margin-top: -20px; }
-    .slider-main .desc .btn a {
+    .slider .slider-item .desc .btn a {
       font-size: 25px;
       padding: 12px 27px 12px 30px; }
-  .slider-main .slider-nav {
+  .slider .slider-controls {
     bottom: 18px; }
-  .slider .slider-small-slide span {
+
+  .shops .shop span {
     font-size: 50px; }
 
   .products .recent .sale-items .item, .products .featured .sale-items .item {
@@ -1006,25 +1068,26 @@ html, body {
       margin-top: 10px;
       margin-bottom: 5px; }
 
-  .slider-main .desc {
+  .slider .slider-item .desc {
     bottom: 10%;
     right: 20px; }
-    .slider-main .desc .text-small {
+    .slider .slider-item .desc .text-small {
       font-size: 14px; }
-    .slider-main .desc .text-big {
+    .slider .slider-item .desc .text-big {
       font-size: 26px;
       margin-top: -5px; }
-    .slider-main .desc .btn {
+    .slider .slider-item .desc .btn {
       margin-top: 0; }
-      .slider-main .desc .btn a {
+      .slider .slider-item .desc .btn a {
         font-size: 16px;
         padding: 3px 7px 3px 8px; }
-  .slider-main .slider-nav {
+  .slider .slider-controls {
     bottom: 10px; }
-    .slider-main .slider-nav-btn {
-      width: 7px;
-      height: 7px; }
-  .slider .slider-small-slide span {
+    .slider .slider-controls .slider-number {
+      width: 9px;
+      height: 9px; }
+
+  .shops .shop span {
     font-size: 20px; }
 
   .products .recent .trigger, .products .featured .trigger {
